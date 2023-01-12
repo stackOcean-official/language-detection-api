@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+  language-detection-api:
+    restart: unless-stopped
+    build:
+      context: .
+    ports:
+      - 8000:8000

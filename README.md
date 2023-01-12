@@ -75,3 +75,31 @@ To stop the container run:
 ```bash
 docker stop language-detection-api
 ```
+
+---
+
+## How to use docker compose
+
+To spin up the setup using docker compose and benefit e.g. from automatic server restarts, you can run:
+
+```bash
+docker compose up -d
+```
+
+To stop the setup you can run
+
+```
+docker compopse down
+```
+
+To rebuild the docker image run
+
+```
+docker compose build
+```
+
+Logs can be accessed with
+
+```
+docker compose logs
+```

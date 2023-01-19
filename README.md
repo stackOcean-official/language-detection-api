@@ -35,15 +35,15 @@ pip install -r requirements.txt
 ## Run the server
 
 ```bash
-uvicorn app.main:app --reload
+API_KEY=CHANGE_ME && uvicorn app.main:app --reload
 ```
 
-The server is running on [http://localhost:8000](http://127.0.0.1:8000/). Swagger documentation can be accessed at [http://localhost:8000/docs](http://127.0.0.1:8000/docs).
+The server is running on [http://localhost:8000](http://127.0.0.1:8000/).You can change the `API_KEY` if you like. Swagger documentation can be accessed at [http://localhost:8000/docs](http://127.0.0.1:8000/docs).
 
 To send a request via your terminal, paste & run the following command:
 
 ```bash
-curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' http://localhost:8000
+curl -X POST -H 'Content-type: application/json' -H 'X-API-Key: CHANGE_ME' --data '{"text":"Hello, World!"}' http://localhost:8000
 ```
 
 ---
@@ -57,7 +57,7 @@ docker build -t language-detection-api .
 Run the Docker Image with:
 
 ```bash
-docker run -d --rm -p 8000:80 --name language-detection-api language-detection-api
+docker run -d --rm -p 8000:80 --env API_KEY=CHANGE_ME --name language-detection-api language-detection-api
 ```
 
 You can now access the api at [http://localhost:8000](http://127.0.0.1:8000/). Swagger documentation are available at [http://localhost:8000/docs](http://127.0.0.1:8000/docs).
@@ -80,7 +80,7 @@ docker stop language-detection-api
 
 ## How to use docker compose
 
-To spin up the setup using docker compose and benefit e.g. from automatic server restarts, you can run:
+You can spin up the setup using docker compose and benefit e.g. from automatic server restarts. Before running the setup, please change the environment variable in the `docker-compose.yml` file. Then run:
 
 ```bash
 docker compose up -d

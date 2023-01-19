@@ -2,7 +2,8 @@ version: "3.3"
 services:
   language-detection-api:
     restart: unless-stopped
-    build:
-      context: .
+    image: ghcr.io/stackocean-official/language-detection-api:main
+    env:
+      API_KEY: "CHANGE_ME"
     ports:
       - 80:80

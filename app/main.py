@@ -41,8 +41,11 @@ def preprocess_text_for_language_detection(text: str):
 class Input(BaseModel):
     text: str
 
+class Output(BaseModel):
+    language: str
+
 @app.post("/")
-async def detect_language(input: Input):
+async def detect_language(input: Input) -> Output:
 
     threshold = 0.0
     no_of_languages = 1

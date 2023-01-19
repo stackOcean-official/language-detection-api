@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 
 import fasttext
 from fasttext import tokenize
+from pydantic import BaseModel
 import re
 import os
 
@@ -37,10 +38,15 @@ def preprocess_text_for_language_detection(text: str):
     
     return text.lower()
 
+class Input(BaseModel):
+    text: str
 
-@app.get("/language_detect/")
-def identify_languages(text: str, no_of_languages: int =1, threshold: float=0.0):
+@app.post("/")
+async def detect_language(input: Input):
 
+    threshold = 0.0
+    no_of_languages = 1
+    text = input.text
     if len(text) == 0:
         raise HTTPException(status_code=406, detail="Text field is empty")
     clean_text = preprocess_text_for_language_detection(text)
@@ -49,6 +55,5 @@ def identify_languages(text: str, no_of_languages: int =1, threshold: float=0.0)
     ft_output = fasttext_language_model.predict(clean_text, no_of_languages, threshold=threshold)
     # format output
     result = [(ft_output[0][i][-2:], ft_output[1][i]) for i in range(len(ft_output[0]))]
-    return result
-
-print(identify_languages("the door is open", 4))
+    # return first language
+    return {"language": result[0][0]}

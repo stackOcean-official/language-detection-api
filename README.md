@@ -35,7 +35,7 @@ pip install -r requirements.txt
 ## Run the server
 
 ```bash
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 The server is running on [http://localhost:8000](http://127.0.0.1:8000/). Swagger documentation can be accessed at [http://localhost:8000/docs](http://127.0.0.1:8000/docs).
@@ -57,7 +57,7 @@ docker build -t language-detection-api .
 Run the Docker Image with:
 
 ```bash
-docker run -d --rm -p 8000:8000 --name language-detection-api language-detection-api
+docker run -d --rm -p 8000:80 --name language-detection-api language-detection-api
 ```
 
 You can now access the api at [http://localhost:8000](http://127.0.0.1:8000/). Swagger documentation are available at [http://localhost:8000/docs](http://127.0.0.1:8000/docs).

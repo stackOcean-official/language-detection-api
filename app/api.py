@@ -5,7 +5,6 @@ from fastapi.security import APIKeyHeader
 from pydantic import BaseModel
 from starlette import status
 
-
 class Input(BaseModel):
     text: str
 

@@ -3,7 +3,7 @@ services:
   language-detection-api:
     restart: unless-stopped
     build: .
-    env:
-      API_KEY: "CHANGE_ME"
+    environment:
+      - API_KEY=CHANGE_ME
     ports:
       - 80:80
